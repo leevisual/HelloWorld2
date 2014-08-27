@@ -3,6 +3,8 @@ package com.example.helloworld2;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,16 +19,28 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Button button;
+		Button button1;
+		Button btnShowWeb;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		button=(Button)findViewById(R.id.button1);
-		button.setOnClickListener(new View.OnClickListener() {
+		button1=(Button)findViewById(R.id.button1);
+		btnShowWeb=(Button)findViewById(R.id.button2);
+		button1.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Toast.makeText(getApplicationContext(), "button popup", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		btnShowWeb.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Uri		uri = Uri.parse("http://m.naver.com");
+				Intent intentWebView=new Intent(Intent.ACTION_VIEW,uri);
+				startActivity(intentWebView);
 			}
 		});
 		if (savedInstanceState == null) {
