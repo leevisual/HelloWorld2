@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="wrap_content"
@@ -7,16 +7,37 @@
     tools:ignore="MergeRootFrame" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/Button01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show msg" />
+        android:layout_x="116dp"
+        android:layout_y="2dp"
+        android:text="Open Naver" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Open Naver" />
+        android:layout_x="6dp"
+        android:layout_y="60dp"
+        android:autoLink="all"
+        android:text="m.naver.com" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="148dp"
+        android:layout_y="56dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="16dp"
+        android:layout_y="121dp"
+        android:text="Show msg" />
+
+</AbsoluteLayout >
 
