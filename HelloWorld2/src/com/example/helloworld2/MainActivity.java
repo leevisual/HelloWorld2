@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 import android.os.Build;
 
@@ -16,8 +17,18 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Button button;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		button=(Button)findViewById(R.id.button1);
+		button.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "button popup", Toast.LENGTH_SHORT).show();
+			}
+		});
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
