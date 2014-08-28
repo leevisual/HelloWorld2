@@ -3,9 +3,12 @@ package com.example.helloworld2;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 import android.os.Build;
 
 public class MainActivity extends Activity {
@@ -21,12 +25,18 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		Button button1;
 		Button btnShowWeb;
+		Button buttonWifiState;
+		final ToggleButton tbWifi;
+		final WifiManager wifiManager =(WifiManager)getSystemService(Context.WIFI_SERVICE);
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		button1=(Button)findViewById(R.id.button1);
-		btnShowWeb=(Button)findViewById(R.id.button2);
+		btnShowWeb=(Button)findViewById(R.id.Button01);
+		tbWifi=(ToggleButton)findViewById(R.id.toggleButton1);	
+		buttonWifiState=(Button)findViewById(R.id.button3);
+		
 		button1.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -38,9 +48,46 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				Log.i("LCH_INFO","click btnShowWeb");
 				Uri		uri = Uri.parse("http://m.naver.com");
 				Intent intentWebView=new Intent(Intent.ACTION_VIEW,uri);
 				startActivity(intentWebView);
+			}
+		});
+		
+		tbWifi.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(tbWifi.isChecked()){
+//					Toast.makeText(getApplicationContext(), "Wifi on", Toast.LENGTH_SHORT).show();
+//					Log.i("LCH_INFO","wifi on");
+					if(!wifiManager.isWifiEnabled()){
+						wifiManager.setWifiEnabled(true);
+					}
+				}else{
+//					Toast.makeText(getApplicationContext(), "Wifi off", Toast.LENGTH_SHORT).show();
+					Log.i("LCH_INFO","wifi off");
+					if(wifiManager.isWifiEnabled()){
+						wifiManager.setWifiEnabled(false);
+					}
+				}
+				
+			}
+		});
+		buttonWifiState.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(wifiManager.isWifiEnabled()){
+					Log.i("LCH_INFO","wifi on");
+					Toast.makeText(getApplicationContext(), "Wifi on", Toast.LENGTH_SHORT).show();
+				}else{
+					Log.i("LCH_INFO","wifi off");
+					Toast.makeText(getApplicationContext(), "Wifi off", Toast.LENGTH_SHORT).show();
+				}
+				
 			}
 		});
 		if (savedInstanceState == null) {
